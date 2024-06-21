@@ -74,7 +74,7 @@ function Inprogress() {
   return (
     <>
       <div className="board-task-item-title inprogress">
-        <h4>In Progress</h4>
+        <h4>In Progess</h4>
         <button
           className="add-btn"
           onClick={() => {
@@ -146,7 +146,14 @@ function Inprogress() {
         </form>
       )}
       {tasks.map((task) => (
-        <div key={task.id} className="board-task-item-card">
+        <div
+          key={task.id}
+          className="board-task-item-card"
+          draggable="true"
+          onDragStart={(e) => handleDragStart(e, task)}
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={(e) => handleDrop(e, task)}
+        >
           <div className="action-section">
             <button className="action-btn" onClick={() => handleEdit(task)}>
               <span className="material-symbols-outlined">edit</span>
@@ -185,6 +192,25 @@ function Inprogress() {
       ))}
     </>
   );
+
+  function handleDragStart(e, task) {
+    e.dataTransfer.setData("text/plain", task.id);
+  }
+
+  function handleDrop(e, targetTask) {
+    const taskId = e.dataTransfer.getData("text");
+    const taskIndex = tasks.findIndex((task) => task.id.toString() === taskId);
+    const targetIndex = tasks.findIndex((task) => task.id === targetTask.id);
+
+    if (taskIndex < 0 || targetIndex < 0 || taskIndex === targetIndex) return;
+
+    const newTasks = [...tasks];
+    const [reorderedTask] = newTasks.splice(taskIndex, 1);
+    newTasks.splice(targetIndex, 0, reorderedTask);
+
+    setTasks(newTasks);
+    localStorage.setItem("tasks", JSON.stringify(newTasks));
+  }
 }
 
 export default Inprogress;

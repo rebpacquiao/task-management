@@ -14,7 +14,7 @@ function Todo() {
   useEffect(() => {
     const storedTasks =
       JSON.parse(localStorage.getItem("tasks")) || TasksData.tasks;
-    setTasks(storedTasks.filter((task) => task.status === "to-do"));
+    setTasks(storedTasks.filter((task) => task.status === "todo"));
   }, []);
 
   const handleInputChange = (e, setter) => setter(e.target.value);
@@ -32,9 +32,9 @@ function Todo() {
     } else {
       const newTask = {
         id: tasks.length ? Math.max(...tasks.map((task) => task.id)) + 1 : 1,
-        title: "To Do",
+        title: "Todo",
         description,
-        status: "to-do",
+        status: "todo",
         dueDate,
         priority,
         notes,
@@ -146,7 +146,14 @@ function Todo() {
         </form>
       )}
       {tasks.map((task) => (
-        <div key={task.id} className="board-task-item-card">
+        <div
+          key={task.id}
+          className="board-task-item-card"
+          draggable="true"
+          onDragStart={(e) => handleDragStart(e, task)}
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={(e) => handleDrop(e, task)}
+        >
           <div className="action-section">
             <button className="action-btn" onClick={() => handleEdit(task)}>
               <span className="material-symbols-outlined">edit</span>
@@ -185,6 +192,25 @@ function Todo() {
       ))}
     </>
   );
+
+  function handleDragStart(e, task) {
+    e.dataTransfer.setData("text/plain", task.id);
+  }
+
+  function handleDrop(e, targetTask) {
+    const taskId = e.dataTransfer.getData("text");
+    const taskIndex = tasks.findIndex((task) => task.id.toString() === taskId);
+    const targetIndex = tasks.findIndex((task) => task.id === targetTask.id);
+
+    if (taskIndex < 0 || targetIndex < 0 || taskIndex === targetIndex) return;
+
+    const newTasks = [...tasks];
+    const [reorderedTask] = newTasks.splice(taskIndex, 1);
+    newTasks.splice(targetIndex, 0, reorderedTask);
+
+    setTasks(newTasks);
+    localStorage.setItem("tasks", JSON.stringify(newTasks));
+  }
 }
 
 export default Todo;

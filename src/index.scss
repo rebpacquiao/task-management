@@ -7,6 +7,11 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+.page-heading {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 28px;
+}
+
 .board-container {
   background: #fff;
   padding: 10px 10px;
@@ -74,6 +79,7 @@ body {
         border: 1px solid #e2e8f0;
         margin: 15px;
         border-radius: 8px;
+        cursor: all-scroll;
 
         .card-status {
           display: flex;
