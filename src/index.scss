@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+  background-color: #eceff8;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+.page-heading {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 28px;
+}
+
+.board-container {
+  background: #fff;
+  padding: 10px 10px;
+  margin-left: 15px;
+  margin-top: 15px;
+  margin-right: 15px;
+  border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
+
+  .board-tasks-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    background-color: #fff;
+    gap: 30px;
+
+    .board-task-item-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 18px;
+      font-weight: 500;
+
+      h4 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+      }
+    }
+
+    .board-task-item {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10p;
+      padding: 0px 0;
+      box-sizing: content-box;
+      background-color: #f6f7fb;
+      min-height: 100vh;
+      flex: 0 0 100%;
+
+      .board-task-item-title {
+        color: #fff;
+        padding: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+
+      .done {
+        background-color: #00c875;
+      }
+
+      .todo {
+        background-color: #fdab3d;
+      }
+
+      .inprogress {
+        background-color: #df2f4a;
+      }
+
+      .back-log {
+        background-color: #c4c4c4;
+      }
+
+      .board-task-item-card {
+        background: #fff;
+        padding: 10px;
+        border: 1px solid #e2e8f0;
+        margin: 15px;
+        border-radius: 8px;
+        cursor: all-scroll;
+
+        .card-status {
+          display: flex;
+          gap: 5px;
+
+          .card-status-item {
+            padding: 5px;
+            font-size: 12px;
+            color: #fff;
+            color: #333;
+            font-weight: 500;
+            background-color: #6768791a;
+            min-width: 50px;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+          }
+
+          .card-status-item.back-log {
+            border-left: 3px solid #c4c4c4;
+          }
+
+          .card-status-item.to-do {
+            border-left: 3px solid #fdab3d;
+          }
+
+          .card-status-item.in-progress {
+            border-left: 3px solid #df2f4a;
+          }
+
+          .card-status-item.done {
+            border-left: 3px solid #00c875;
+          }
+
+          .card-status-item.low {
+            border-left: 3px solid #c4c4c4;
+          }
+
+          .card-status-item.medium {
+            border-left: 3px solid #fdab3d;
+          }
+
+          .card-status-item.high {
+            border-left: 3px solid #1a56db;
+          }
+        }
+      }
+
+      .meeting-notes {
+        color: #333;
+        font-size: 13px;
+      }
+
+      .user-task-continer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .add-btn {
+        background-color: transparent;
+        color: #fff;
+        border: 0;
+        cursor: pointer;
+      }
+
+      .user-task {
+        input {
+          width: 100%;
+          padding: 6px 1px;
+          border: 1px solid #d1d5db;
+          margin-bottom: 12px;
+        }
+      }
+
+      #date {
+        width: 100%;
+        padding: 6px 1px;
+        border: 1px solid #d1d5db;
+      }
+
+      .task-status {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        select {
+          width: 100%;
+          padding: 6px 1px;
+          border: 1px solid #d1d5db;
+        }
+
+        #text-area {
+          width: 100%;
+          padding: 6px 1px;
+          border: 1px solid #d1d5db;
+          max-height: 100px;
+        }
+
+        .task-submit {
+          display: flex;
+          gap: 10px;
+        }
+
+        .save-btn {
+          background-color: #1a56db;
+          color: #fff;
+          padding: 5px 26px;
+          border: 0;
+          border-radius: 5px;
+          cursor: pointer;
+
+          &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+        }
+
+        .cancel-btn {
+          background-color: #e1d2d2;
+          color: #fff;
+          padding: 5px 26px;
+          border: 0;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+      }
+
+      .action-btn {
+        background-color: transparent;
+        border: 0;
+        font-size: 13px;
+        cursor: pointer;
+
+        .material-symbols-outlined {
+          font-size: 22px;
+          color: #32333861;
+        }
+      }
+
+      .action-btn:hover {
+        .material-symbols-outlined {
+          color: #333;
+        }
+      }
+
+      .action-section {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      @media (min-width: 768px) {
+        flex: 0 0 33.333%;
+      }
+
+      @media (min-width: 1920px) {
+        flex: 0 0 100%;
+      }
+
+      @media (min-width: 1024px) {
+        flex: 0 0 20%;
+      }
+    }
+  }
+}
