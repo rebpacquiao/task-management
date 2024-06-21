@@ -1,16 +1,118 @@
+import { useState, useEffect } from "react";
 import User from "../assets/user-01.png";
 import TasksData from "../data/tasks.json";
 
 function Todo() {
-  const todoTasks = TasksData.tasks.filter((task) => task.status === "to-do");
+  const [tasks, setTasks] = useState([]);
+  const [description, setDescription] = useState("");
+  const [dueDate, setDueDate] = useState("");
+  const [priority, setPriority] = useState("low");
+  const [notes, setNotes] = useState("");
+  const [showForm, setShowForm] = useState(false);
+
+  useEffect(() => {
+    const storedTasks =
+      JSON.parse(localStorage.getItem("tasks")) || TasksData.tasks;
+    setTasks(storedTasks.filter((task) => task.status === "to-do"));
+  }, []);
+
+  const handleInputChange = (e, setter) => setter(e.target.value);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newTask = {
+      id: tasks.length + 1,
+      title: "To Do",
+      description,
+      status: "to-do",
+      dueDate,
+      priority,
+      notes,
+      assignedTo: {
+        name: "User",
+        image: User,
+      },
+    };
+
+    const updatedTasks = [...tasks, newTask];
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setTasks(updatedTasks);
+    setDescription("");
+    setDueDate("");
+    setPriority("low");
+    setNotes("");
+    setShowForm(false);
+  };
 
   return (
     <>
       <div className="board-task-item-title todo">
         <h4>Todo</h4>
-        <span className="material-symbols-outlined">add</span>
+        <button className="add-btn" onClick={() => setShowForm(!showForm)}>
+          <span className="material-symbols-outlined">add</span>
+        </button>
       </div>
-      {todoTasks.map((task) => (
+      {showForm && (
+        <form onSubmit={handleSubmit}>
+          <div className="board-task-item-card">
+            <div className="user-task">
+              <input
+                type="text"
+                name="description"
+                placeholder="enter-description"
+                value={description}
+                onChange={(e) => handleInputChange(e, setDescription)}
+              />
+            </div>
+            <div className="task-status">
+              <span className="card-status-item">
+                <input
+                  type="date"
+                  name="date"
+                  id="date"
+                  value={dueDate}
+                  onChange={(e) => handleInputChange(e, setDueDate)}
+                />
+              </span>
+              <span className="card-status-item">
+                <select
+                  name="priority"
+                  value={priority}
+                  onChange={(e) => handleInputChange(e, setPriority)}
+                >
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </span>
+              <textarea
+                id="text-area"
+                name="notes"
+                placeholder="add notes"
+                value={notes}
+                onChange={(e) => handleInputChange(e, setNotes)}
+              ></textarea>
+              <div className="task-submit">
+                <button
+                  className="save-btn"
+                  type="submit"
+                  disabled={!description.trim()}
+                >
+                  Save
+                </button>
+                <button
+                  className="cancel-btn"
+                  type="button"
+                  onClick={() => setShowForm(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      )}
+      {tasks.map((task) => (
         <div key={task.id} className="board-task-item-card">
           <div className="user-task-continer">
             <h5>{task.description}</h5>

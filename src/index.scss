@@ -110,6 +110,69 @@ body {
         background-color: transparent;
         color: #fff;
         border: 0;
+        cursor: pointer;
+      }
+
+      .user-task {
+        input {
+          width: 100%;
+          padding: 6px 1px;
+          border: 1px solid #d1d5db;
+          margin-bottom: 12px;
+        }
+      }
+
+      #date {
+        width: 100%;
+        padding: 6px 1px;
+        border: 1px solid #d1d5db;
+      }
+
+      .task-status {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        select {
+          width: 100%;
+          padding: 6px 1px;
+          border: 1px solid #d1d5db;
+        }
+
+        #text-area {
+          width: 100%;
+          padding: 6px 1px;
+          border: 1px solid #d1d5db;
+          max-height: 100px;
+        }
+
+        .task-submit {
+          display: flex;
+          gap: 10px;
+        }
+
+        .save-btn {
+          background-color: #1a56db;
+          color: #fff;
+          padding: 5px 26px;
+          border: 0;
+          border-radius: 5px;
+          cursor: pointer;
+
+          &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+        }
+
+        .cancel-btn {
+          background-color: #e1d2d2;
+          color: #fff;
+          padding: 5px 26px;
+          border: 0;
+          border-radius: 5px;
+          cursor: pointer;
+        }
       }
 
       @media (min-width: 768px) {

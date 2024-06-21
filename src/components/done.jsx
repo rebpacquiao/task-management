@@ -55,22 +55,21 @@ function Done() {
       {showForm && (
         <form onSubmit={handleSubmit}>
           <div className="board-task-item-card">
-            <div className="user-task-continer">
-              <h5>
-                <input
-                  type="text"
-                  name="description"
-                  placeholder="enter-description"
-                  value={description}
-                  onChange={(e) => handleInputChange(e, setDescription)}
-                />
-              </h5>
+            <div className="user-task">
+              <input
+                type="text"
+                name="description"
+                placeholder="enter-description"
+                value={description}
+                onChange={(e) => handleInputChange(e, setDescription)}
+              />
             </div>
-            <div className="card-status">
+            <div className="task-status">
               <span className="card-status-item">
                 <input
                   type="date"
                   name="date"
+                  id="date"
                   value={dueDate}
                   onChange={(e) => handleInputChange(e, setDueDate)}
                 />
@@ -86,16 +85,30 @@ function Done() {
                   <option value="high">High</option>
                 </select>
               </span>
-            </div>
-            <div className="meeting-notes">
               <textarea
+                id="text-area"
                 name="notes"
                 placeholder="add notes"
                 value={notes}
                 onChange={(e) => handleInputChange(e, setNotes)}
               ></textarea>
+              <div className="task-submit">
+                <button
+                  className="save-btn"
+                  type="submit"
+                  disabled={!description.trim()}
+                >
+                  Save
+                </button>
+                <button
+                  className="cancel-btn"
+                  type="button"
+                  onClick={() => setShowForm(false)}
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
-            <button type="submit">Save</button>
           </div>
         </form>
       )}
