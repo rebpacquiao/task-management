@@ -169,9 +169,14 @@ function Done() {
             />
           </div>
           <div className="card-status">
-            <span className="card-status-item">{task.status}</span>
+            <span className={`card-status-item ${task.status}`}>
+              {task.status}
+            </span>
+
             <span className="card-status-item">{task.dueDate}</span>
-            <span className="card-status-item">{task.priority}</span>
+            <span className={`card-status-item ${task.priority}`}>
+              {task.priority}
+            </span>
           </div>
           <div className="meeting-notes">
             <p>{task.notes}</p>

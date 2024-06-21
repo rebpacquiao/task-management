@@ -81,7 +81,6 @@ body {
 
           .card-status-item {
             padding: 5px;
-            border-radius: 5px;
             font-size: 12px;
             color: #fff;
             color: #333;
@@ -91,6 +90,34 @@ body {
             display: flex;
             text-align: center;
             justify-content: center;
+          }
+
+          .card-status-item.back-log {
+            border-left: 3px solid #c4c4c4;
+          }
+
+          .card-status-item.to-do {
+            border-left: 3px solid #fdab3d;
+          }
+
+          .card-status-item.in-progress {
+            border-left: 3px solid #df2f4a;
+          }
+
+          .card-status-item.done {
+            border-left: 3px solid #00c875;
+          }
+
+          .card-status-item.low {
+            border-left: 3px solid #c4c4c4;
+          }
+
+          .card-status-item.medium {
+            border-left: 3px solid #fdab3d;
+          }
+
+          .card-status-item.high {
+            border-left: 3px solid #1a56db;
           }
         }
       }
