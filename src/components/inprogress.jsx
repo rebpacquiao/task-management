@@ -10,7 +10,9 @@ function Inprogress() {
     <>
       <div className="board-task-item-title inprogress">
         <h4>In-Progress</h4>
-        <span className="material-symbols-outlined">add</span>
+        <button className="add-btn">
+          <span className="material-symbols-outlined">add</span>
+        </button>
       </div>
       {inProgressTasks.map((task) => (
         <div key={task.id} className="board-task-item-card">

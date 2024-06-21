@@ -10,7 +10,9 @@ function Backlog() {
     <>
       <div className="board-task-item-title back-log">
         <h4>Backlog</h4>
-        <span className="material-symbols-outlined">add</span>
+        <button className="add-btn">
+          <span className="material-symbols-outlined">add</span>
+        </button>
       </div>
       {backlogTasks.map((task) => (
         <div key={task.id} className="board-task-item-card">

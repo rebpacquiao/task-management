@@ -106,6 +106,12 @@ body {
         justify-content: space-between;
       }
 
+      .add-btn {
+        background-color: transparent;
+        color: #fff;
+        border: 0;
+      }
+
       @media (min-width: 768px) {
         flex: 0 0 50%;
       }
