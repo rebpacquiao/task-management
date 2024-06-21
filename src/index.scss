@@ -175,8 +175,35 @@ body {
         }
       }
 
+      .action-btn {
+        background-color: transparent;
+        border: 0;
+        font-size: 13px;
+        cursor: pointer;
+
+        .material-symbols-outlined {
+          font-size: 22px;
+          color: #32333861;
+        }
+      }
+
+      .action-btn:hover {
+        .material-symbols-outlined {
+          color: #333;
+        }
+      }
+
+      .action-section {
+        display: flex;
+        justify-content: flex-end;
+      }
+
       @media (min-width: 768px) {
-        flex: 0 0 50%;
+        flex: 0 0 33.333%;
+      }
+
+      @media (min-width: 1920px) {
+        flex: 0 0 100%;
       }
 
       @media (min-width: 1024px) {

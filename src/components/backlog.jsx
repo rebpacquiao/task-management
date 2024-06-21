@@ -9,6 +9,7 @@ function Backlog() {
   const [priority, setPriority] = useState("low");
   const [notes, setNotes] = useState("");
   const [showForm, setShowForm] = useState(false);
+  const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
     const storedTasks =
@@ -20,35 +21,67 @@ function Backlog() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newTask = {
-      id: tasks.length + 1,
-      title: "Backlog",
-      description,
-      status: "back-log",
-      dueDate,
-      priority,
-      notes,
-      assignedTo: {
-        name: "User",
-        image: User,
-      },
-    };
+    if (editingId) {
+      const updatedTasks = tasks.map((task) =>
+        task.id === editingId
+          ? { ...task, description, dueDate, priority, notes }
+          : task
+      );
+      setTasks(updatedTasks);
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    } else {
+      const newTask = {
+        id: tasks.length ? Math.max(...tasks.map((task) => task.id)) + 1 : 1,
+        title: "Backlog",
+        description,
+        status: "back-log",
+        dueDate,
+        priority,
+        notes,
+        assignedTo: {
+          name: "User",
+          image: User,
+        },
+      };
+      const updatedTasks = [...tasks, newTask];
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+      setTasks(updatedTasks);
+    }
 
-    const updatedTasks = [...tasks, newTask];
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-    setTasks(updatedTasks);
     setDescription("");
     setDueDate("");
     setPriority("low");
     setNotes("");
     setShowForm(false);
+    setEditingId(null);
+  };
+
+  const handleEdit = (task) => {
+    setDescription(task.description);
+    setDueDate(task.dueDate);
+    setPriority(task.priority);
+    setNotes(task.notes);
+    setShowForm(true);
+    setEditingId(task.id);
+  };
+
+  const handleDelete = (taskId) => {
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+    setTasks(updatedTasks);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   };
 
   return (
     <>
       <div className="board-task-item-title back-log">
         <h4>Backlog</h4>
-        <button className="add-btn" onClick={() => setShowForm(!showForm)}>
+        <button
+          className="add-btn"
+          onClick={() => {
+            setShowForm(!showForm);
+            setEditingId(null);
+          }}
+        >
           <span className="material-symbols-outlined">add</span>
         </button>
       </div>
@@ -114,6 +147,17 @@ function Backlog() {
       )}
       {tasks.map((task) => (
         <div key={task.id} className="board-task-item-card">
+          <div className="action-section">
+            <button className="action-btn" onClick={() => handleEdit(task)}>
+              <span className="material-symbols-outlined">edit</span>
+            </button>
+            <button
+              className="action-btn"
+              onClick={() => handleDelete(task.id)}
+            >
+              <span className="material-symbols-outlined">delete</span>
+            </button>
+          </div>
           <div className="user-task-continer">
             <h5>{task.description}</h5>
             <img
