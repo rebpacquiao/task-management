@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+  background-color: #eceff8;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+.board-container {
+  background: #fff;
+  padding: 10px 10px;
+  margin-left: 15px;
+  margin-top: 15px;
+  margin-right: 15px;
+  border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
+
+  .board-tasks-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    background-color: #fff;
+    gap: 30px;
+
+    .board-task-item-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 18px;
+      font-weight: 500;
+
+      h4 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+      }
+    }
+
+    .board-task-item {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10p;
+      padding: 0px 0;
+      box-sizing: content-box;
+      background-color: #f6f7fb;
+      min-height: 100vh;
+      flex: 0 0 100%;
+
+      .board-task-item-title {
+        color: #fff;
+        padding: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+
+      .done {
+        background-color: #00c875;
+      }
+
+      .todo {
+        background-color: #fdab3d;
+      }
+
+      .inprogress {
+        background-color: #df2f4a;
+      }
+
+      .back-log {
+        background-color: #c4c4c4;
+      }
+
+      .board-task-item-card {
+        background: #fff;
+        padding: 10px;
+        border: 1px solid #e2e8f0;
+        margin: 15px;
+        border-radius: 8px;
+
+        .card-status {
+          display: flex;
+          gap: 5px;
+
+          .card-status-item {
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            color: #fff;
+            color: #333;
+            font-weight: 500;
+            background-color: #6768791a;
+            min-width: 50px;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+          }
+        }
+      }
+
+      .meeting-notes {
+        color: #333;
+        font-size: 13px;
+      }
+
+      .user-task-continer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      @media (min-width: 768px) {
+        flex: 0 0 50%;
+      }
+
+      @media (min-width: 1024px) {
+        flex: 0 0 20%;
+      }
+    }
+  }
+}

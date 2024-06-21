@@ -1,0 +1,56 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Backlog",
+      "description": "Final QA",
+      "status": "back-log",
+      "dueDate": "June 20",
+      "priority": "Low",
+      "notes": "Meeting notes",
+      "assignedTo": {
+        "name": "User",
+        "image": "path/to/user/image"
+      }
+    },
+    {
+      "id": 2,
+      "title": "To Do",
+      "description": "Design Phase 1",
+      "status": "to-do",
+      "dueDate": "July 05",
+      "priority": "High",
+      "notes": "Initial design meeting completed",
+      "assignedTo": {
+        "name": "Designer",
+        "image": "path/to/designer/image"
+      }
+    },
+    {
+      "id": 3,
+      "title": "In Progress",
+      "description": "Development Sprint 1",
+      "status": "in-progress",
+      "dueDate": "August 15",
+      "priority": "Medium",
+      "notes": "Sprint 1 started",
+      "assignedTo": {
+        "name": "Developer",
+        "image": "path/to/developer/image"
+      }
+    },
+    {
+      "id": 4,
+      "title": "Done",
+      "description": "Testing Phase 1",
+      "status": "done",
+      "dueDate": "September 10",
+      "priority": "High",
+      "notes": "All tests passed",
+      "assignedTo": {
+        "name": "Tester",
+        "image": "path/to/tester/image"
+      }
+    }
+  ]
+}
